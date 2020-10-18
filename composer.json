@@ -65,13 +65,5 @@
         ]
     },
     "repositories": {
-        "victorycto/sandboxjwc": {
-            "type": "path",
-            "url": "/home/vagrant/code/packages/victorycto/sandboxjwc"
-        },
-        "victorycto/imageuploadservice": {
-            "type": "path",
-            "url": "/home/vagrant/code/packages/victorycto/imageuploadservice"
-        }
     }
 }
