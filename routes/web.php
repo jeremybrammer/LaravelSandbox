@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+//Route to the ImageUploads controller methods.
+Route::get('imageuploads', 'ImageUploads@index')->name('imageuploads.index');
