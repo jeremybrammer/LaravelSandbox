@@ -1,17 +1,27 @@
-<html>
-    <head>
-        <!-- Styles -->
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}" defer></script>
-    </head>
-    <body>
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">{{ $someData }}</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
+@extends('layouts.app')
+
+@section('content')
+    <div class="card" style="width: 50rem;">
+        <div class="card-body">
+            <h5 class="card-title">Upload an Image</h5>
+            <p class="card-text">Upload an image to s3.</p>
+
+            <form id="image-upload" class="image-upload-form" action="{{ route("imageuploads.store") }}" method="post" enctype="multipart/form-data">
+                @csrf
+                <input type="file" id="image-upload-field" name="image-upload-field" accept="image/*"/>
+                <button type="submit" class="btn btn-success">Upload</button>
+            </form>
+
+            @if($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
         </div>
-    </body>
-</html>
+    </div>
+@endsection

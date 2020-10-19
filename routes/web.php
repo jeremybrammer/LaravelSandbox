@@ -17,3 +17,4 @@ Route::get('/', function () {
 
 //Route to the ImageUploads controller methods.
 Route::get('imageuploads', 'ImageUploads@index')->name('imageuploads.index');
+Route::post('imageuploads/create', 'ImageUploads@store')->name('imageuploads.store');
