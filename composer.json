@@ -12,6 +12,7 @@
         "aws/aws-sdk-php-laravel": "^3.4",
         "cviebrock/laravel-elasticsearch": "^4.1",
         "fideloper/proxy": "^4.0",
+        "jeremybrammer/laravelimagetos3package": "dev-master",
         "jeroen-g/laravel-packager": "^2.3",
         "laravel/framework": "^6.0",
         "laravel/homestead": "^9.3",
@@ -66,5 +67,9 @@
         ]
     },
     "repositories": {
+        "jeremybrammer/laravelimagetos3package": {
+            "type": "path",
+            "url": "/home/vagrant/code/packages/jeremybrammer/laravelimagetos3package"
+        }
     }
 }

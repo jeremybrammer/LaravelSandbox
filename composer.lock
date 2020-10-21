@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5a4894eea08e54f6617fdd9e9f83c316",
+    "content-hash": "3be2a4cab9099652c5ecdbe6695b4675",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -1034,6 +1034,62 @@
             "description": "Highlight PHP code in terminal",
             "abandoned": "php-parallel-lint/php-console-highlighter",
             "time": "2018-09-29T18:48:56+00:00"
+        },
+        {
+            "name": "jeremybrammer/laravelimagetos3package",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "/home/vagrant/code/packages/jeremybrammer/laravelimagetos3package",
+                "reference": "df62506bfbb1c7308e9e36ac4e9d46e40aa4e52d"
+            },
+            "require": {
+                "illuminate/support": "~6"
+            },
+            "require-dev": {
+                "orchestra/testbench": "~5|~6",
+                "phpunit/phpunit": "~9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "jeremybrammer\\laravelimagetos3package\\laravelimagetos3packageServiceProvider"
+                    ],
+                    "aliases": {
+                        "laravelimagetos3package": "jeremybrammer\\laravelimagetos3package\\Facades\\laravelimagetos3package"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "jeremybrammer\\laravelimagetos3package\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "jeremybrammer\\laravelimagetos3package\\Tests\\": "tests"
+                }
+            },
+            "license": [
+                "license"
+            ],
+            "authors": [
+                {
+                    "name": "author name",
+                    "email": "author email",
+                    "homepage": "author homepage"
+                }
+            ],
+            "description": ":package_description",
+            "homepage": "https://github.com/jeremybrammer/laravelimagetos3package",
+            "keywords": [
+                "Laravel",
+                "laravelimagetos3package"
+            ],
+            "transport-options": {
+                "relative": false
+            }
         },
         {
             "name": "jeroen-g/laravel-packager",
@@ -5217,6 +5273,7 @@
             "keywords": [
                 "tokenizer"
             ],
+            "abandoned": true,
             "time": "2019-09-17T06:23:10+00:00"
         },
         {
@@ -6077,7 +6134,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "jeremybrammer/laravelimagetos3package": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

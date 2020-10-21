@@ -4,7 +4,7 @@
     <div class="card" style="width: 50rem;">
         <div class="card-body">
             <h5 class="card-title">Upload an Image</h5>
-            <p class="card-text">Upload an image to s3.</p>
+            <p class="card-text">Upload an image to s3. {{ $testData }}</p>
 
             <form id="image-upload" class="image-upload-form" action="{{ route("imageuploads.store") }}" method="post" enctype="multipart/form-data">
                 @csrf
