@@ -7,6 +7,7 @@ use Illuminate\Http\Response;
 
 // use jeremybrammer\laravelimagetos3package\laravelimagetos3package;
 use jeremybrammer\laravelimagetos3package\ImageTos3Interface;
+use jeremybrammer\laravelimagetos3package\Models\ImageUpload;
 
 class ImageUploads extends Controller
 {
@@ -39,5 +40,10 @@ class ImageUploads extends Controller
         // $file = $request->file("image-upload-field");
         // dd($file->getSize());
         return redirect(route('imageuploads.index'))->with('success_message', 'File uploaded.');
+    }
+
+    public function view(ImageUpload $imageUpload){
+        $imageURL = $this->imagetos3->preSignS3Url($imageUpload->original_image_url);
+        return view("imageuploads.view", ["imageURL" => $imageURL]);
     }
 }
