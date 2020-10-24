@@ -19,7 +19,8 @@ class ImageUploads extends Controller
     public function index(){
         $data = [
             "someData" => "This is from the ImageUploads controller.",
-            "testData" => $this->imagetos3->test()
+            "testData" => $this->imagetos3->test(),
+            "allUploadedImages" => $this->imagetos3->getAllUploadedImages()
         ];
         return view("imageuploads.index", $data);
     }
@@ -37,6 +38,6 @@ class ImageUploads extends Controller
 
         // $file = $request->file("image-upload-field");
         // dd($file->getSize());
-        return "Nothing here yet.";
+        return redirect(route('imageuploads.index'))->with('success_message', 'File uploaded.');
     }
 }
