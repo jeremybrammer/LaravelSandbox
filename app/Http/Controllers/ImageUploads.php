@@ -43,7 +43,8 @@ class ImageUploads extends Controller
     }
 
     public function view(ImageUpload $imageUpload){
-        $imageURL = $this->imagetos3->preSignS3Url($imageUpload->original_image_url);
+        // $imageURL = $this->imagetos3->preSignS3Url($imageUpload->original_image_url); //Sign s3.
+        $imageURL = $this->imagetos3->preSignCloudFrontUrl($imageUpload->original_image_url); //Sign CloudFront.
         return view("imageuploads.view", ["imageURL" => $imageURL]);
     }
 }

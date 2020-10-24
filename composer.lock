@@ -437,6 +437,70 @@
             "time": "2019-03-31T00:38:28+00:00"
         },
         {
+            "name": "dreamonkey/laravel-cloudfront-url-signer",
+            "version": "v3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dreamonkey/laravel-cloudfront-url-signer.git",
+                "reference": "e61d7e99e3ddee82f87a451b392f9a6583b45249"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dreamonkey/laravel-cloudfront-url-signer/zipball/e61d7e99e3ddee82f87a451b392f9a6583b45249",
+                "reference": "e61d7e99e3ddee82f87a451b392f9a6583b45249",
+                "shasum": ""
+            },
+            "require": {
+                "aws/aws-sdk-php": "^3.52",
+                "illuminate/support": "^6.0|^7.0",
+                "php": "^7.1.3"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^5.0",
+                "phpunit/phpunit": "^8.0|^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Dreamonkey\\CloudFrontUrlSigner\\CloudFrontUrlSignerServiceProvider"
+                    ],
+                    "aliases": {
+                        "CloudFrontUrlSigner": "Dreamonkey\\CloudFrontUrlSigner\\Facades\\CloudFrontUrlSigner"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Dreamonkey\\CloudFrontUrlSigner\\": "src"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Paolo Caleffi",
+                    "email": "p.caleffi@dreamonkey.com",
+                    "homepage": "https://dreamonkey.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel 5.6+ wrapper around CloudFront canned signed URLs",
+            "homepage": "https://github.com/dreamonkey/laravel-cloudfront-url-signer",
+            "keywords": [
+                "cloudfront",
+                "dreamonkey",
+                "laravel-cloudfront-url-signer",
+                "private content"
+            ],
+            "time": "2020-03-05T11:17:33+00:00"
+        },
+        {
             "name": "egulias/email-validator",
             "version": "2.1.11",
             "source": {
@@ -1041,9 +1105,10 @@
             "dist": {
                 "type": "path",
                 "url": "/home/vagrant/code/packages/jeremybrammer/laravelimagetos3package",
-                "reference": "103eb998b8a041d8c622f2e34de821c79ba1a413"
+                "reference": "5534cfefc52974016a523fb1f1c2059bf8eff6be"
             },
             "require": {
+                "dreamonkey/laravel-cloudfront-url-signer": "^3.0.0",
                 "illuminate/support": "~6",
                 "league/flysystem-aws-s3-v3": "~1.0"
             },
@@ -1077,9 +1142,9 @@
             ],
             "authors": [
                 {
-                    "name": "author name",
-                    "email": "author email",
-                    "homepage": "author homepage"
+                    "name": "Jeremy Brammer",
+                    "email": "jbrammer03@gmail.com",
+                    "homepage": "http://www.jeremylbrammer.com"
                 }
             ],
             "description": ":package_description",
