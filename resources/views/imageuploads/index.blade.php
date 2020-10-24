@@ -38,7 +38,8 @@
     @foreach($allUploadedImages as $image)
         <div class="card" style="width: 50rem;">
             <div class="card-body">
-                <p><a href="{{ $image->original_image_url_presigned }}">{{ $image->original_filename }}</a></p>
+                {{-- <p><a href="{{ $image->original_image_url_presigned }}">{{ $image->original_filename }}</a></p> --}}
+                <p><a href="{{ route("imageuploads.view", [$image->id]) }}">{{ $image->original_filename }}</a></p>
             </div>
         </div>
     @endforeach
