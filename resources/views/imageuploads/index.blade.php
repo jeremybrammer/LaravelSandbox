@@ -4,7 +4,7 @@
     <div class="card" style="width: 50rem;">
         <div class="card-body">
             <h5 class="card-title">Upload an Image</h5>
-            {{-- <p class="card-text">Upload an image to s3. {{ $testData }}</p> --}}
+            <p class="card-text">Upload an image to s3. {{ $testData }}</p>
 
             {{-- <img src="{{ Storage::url('images/aD4cMvZoc7rlW39CbSALKCop0bmitcjuSO5M8YIk.png') }}" /> --}}
 

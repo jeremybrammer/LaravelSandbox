@@ -1105,7 +1105,7 @@
             "dist": {
                 "type": "path",
                 "url": "/home/vagrant/code/packages/jeremybrammer/laravelimagetos3package",
-                "reference": "f1acabf154ff190ba7f8cd07a3245e83e6d5141f"
+                "reference": "8edecda31bde74474028c63920a6152c40580c3a"
             },
             "require": {
                 "dreamonkey/laravel-cloudfront-url-signer": "^3.0.0",
@@ -1123,7 +1123,7 @@
                         "jeremybrammer\\laravelimagetos3package\\laravelimagetos3packageServiceProvider"
                     ],
                     "aliases": {
-                        "laravelimagetos3package": "jeremybrammer\\laravelimagetos3package\\Facades\\laravelimagetos3packagefacade"
+                        "laravelimagetos3package": "jeremybrammer\\laravelimagetos3package\\Facades\\LaravelImageToS3PackageFacade"
                     }
                 }
             },
