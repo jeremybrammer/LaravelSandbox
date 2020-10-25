@@ -21,18 +21,22 @@
 Install the composer project:
 ```
 composer install
+```
 
 If installing in another project, require my package, but this is already in composer.json for this repo, so skip this if installing from here.
 ```
 composer require jeremybrammer/laravelimagetos3package
+```
 
 Publish the package's config files. It publishes a config file for a dependency.
 ```
 php artisan vendor:publish --provider="jeremybrammer\laravelimagetos3package\laravelimagetos3packageServiceProvider"
+```
 
 Migrate the database to get the new image uploads database table going.
 ```
 php artisan migrate
+```
 
 Change/Add the following lines in the .env file:
 ```
@@ -43,6 +47,7 @@ AWS_BUCKET=
 AWS_URL=
 CLOUDFRONT_PRIVATE_KEY_PATH=keys/my_key.pem
 CLOUDFRONT_KEY_PAIR_ID=
+```
 
 (Add your CloudFront key to /storage/keys/my_key.pem.  This should be .gitignored already).
 
@@ -56,19 +61,23 @@ use Illuminate\Http\Request;
 use jeremybrammer\laravelimagetos3package\laravelimagetos3package;
 use jeremybrammer\laravelimagetos3package\Models\ImageUpload;
 use jeremybrammer\laravelimagetos3package\Facades\LaravelImageToS3PackageFacade;
+```
 
 Gets all previously uploaded images and pre-signs the CloudFront URLs for the thumbnails.
 ```
 LaravelImageToS3PackageFacade::getAllUploadedImages(); 
+```
 
 Optionally override the image size settings in the upload service.
 ```
 LaravelImageToS3PackageFacade::setWidthByImageType("thumbnail", 100);
 LaravelImageToS3PackageFacade::setWidthByImageType("small", 200);
+```
 
 Call the upload handler with the request, html image field name attribute, and folder in s3 to store them.
 ```
 LaravelImageToS3PackageFacade::handUploadRequest($request, "image-upload-field", "victorycto/images");
+```
 
 A controller example to view individual images that uses my eloquent model with route-model-binding:
 ```
@@ -84,6 +93,7 @@ public function view(ImageUpload $imageUpload, $imagetype){
     $imageURL = LaravelImageToS3PackageFacade::preSignCloudFrontUrl($url); //Sign CloudFront URL.
     return view("imageuploads.view", ["imageURL" => $imageURL]);
 }
+```
 
 Enjoy!  Below are original instructions for this project.
 
