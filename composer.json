@@ -67,9 +67,5 @@
         ]
     },
     "repositories": {
-        "jeremybrammer/laravelimagetos3package": {
-            "type": "path",
-            "url": "/home/vagrant/code/packages/jeremybrammer/laravelimagetos3package"
-        }
     }
 }

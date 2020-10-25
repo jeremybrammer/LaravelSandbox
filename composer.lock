@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3be2a4cab9099652c5ecdbe6695b4675",
+    "content-hash": "58f530551be7ccb38b039284f9ce3287",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -1172,10 +1172,16 @@
         {
             "name": "jeremybrammer/laravelimagetos3package",
             "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jeremybrammer/laravelimagetos3package.git",
+                "reference": "229311a625e0a4b67a7ef3942a18e9f2b4249d45"
+            },
             "dist": {
-                "type": "path",
-                "url": "/home/vagrant/code/packages/jeremybrammer/laravelimagetos3package",
-                "reference": "0d4ec2a1edf689a84234981c95f0ad6e94f5a5ce"
+                "type": "zip",
+                "url": "https://api.github.com/repos/jeremybrammer/laravelimagetos3package/zipball/229311a625e0a4b67a7ef3942a18e9f2b4249d45",
+                "reference": "229311a625e0a4b67a7ef3942a18e9f2b4249d45",
+                "shasum": ""
             },
             "require": {
                 "dreamonkey/laravel-cloudfront-url-signer": "^3.0.0",
@@ -1203,13 +1209,9 @@
                     "jeremybrammer\\laravelimagetos3package\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "jeremybrammer\\laravelimagetos3package\\Tests\\": "tests"
-                }
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "license"
+                "MIT"
             ],
             "authors": [
                 {
@@ -1221,12 +1223,10 @@
             "description": ":package_description",
             "homepage": "https://github.com/jeremybrammer/laravelimagetos3package",
             "keywords": [
-                "Laravel",
+                "laravel",
                 "laravelimagetos3package"
             ],
-            "transport-options": {
-                "relative": false
-            }
+            "time": "2020-10-25T13:46:59+00:00"
         },
         {
             "name": "jeroen-g/laravel-packager",
