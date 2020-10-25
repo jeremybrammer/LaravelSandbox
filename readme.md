@@ -1,3 +1,82 @@
+# Notes about how I completed this project:
+
+- This is a fork from the original project: https://github.com/VictoryCTO/LaravelSandbox
+- I followed the instructions, and used Packager to develop the package/service in a local repository.
+- I kept the packages dependencies within the package, so that once installed it works without a lot of configuration.
+- I set it up to resize images with the Intervention package.
+- The package creates its own database migrations, and eloquent model to use the database.
+- It stores 3 versions of the uploaded image in a single database row for original, thumbnail, and small sizes.
+- The package uploads files to AWS s3 storage.
+- It pre-signs CloudFront CDN URLs to display the images from a distribution.
+- After I completed the package development, I uploaded it to its own GitHub repository, and also on Packagist.
+- Once it was on Packagist, I removed the local repository, and installed it like a normal composer package into the project.
+- There is a live demo version running on an EC2 instance, using MySQL RDS database, with s3 and CloudFront distribution: http://imageuploadservice.jeremylbrammer.com/imageuploads
+- The link to the package's GitHub repository: https://github.com/jeremybrammer/laravelimagetos3package
+- The link to the package on Packagist: https://packagist.org/packages/jeremybrammer/laravelimagetos3package
+- Below are instructions for installing this repository.
+- Further instructions for using/installing the actual package can be found on its GitHub repo, or Packagist page.
+
+# Installation Steps for this repository:
+
+//Install the composer project:
+composer install
+
+//If installing in another project, require my package, but this is already in composer.json for this repo, so skip this if installing from here.
+composer require jeremybrammer/laravelimagetos3package
+
+//Publish the package's config files. It publishes a config file for a dependency.
+php artisan vendor:publish --provider="jeremybrammer\laravelimagetos3package\laravelimagetos3packageServiceProvider"
+
+//Migrate the database to get the new image uploads database table going.
+php artisan migrate
+
+//Change/Add the following lines in the .env file:
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+AWS_DEFAULT_REGION=
+AWS_BUCKET=
+AWS_URL=
+CLOUDFRONT_PRIVATE_KEY_PATH=keys/my_key.pem
+CLOUDFRONT_KEY_PAIR_ID=
+
+(Add your CloudFront key to /storage/keys/my_key.pem.  This should be .gitignored already).
+
+Depending on your server configuration, increase nginx.conf and php.ini settings as needed to allow larger image uploads, and memory limits.
+
+# Package Usage in Controllers:
+
+//Include Laravel's Request class, and the following classes, models, and facades from my package.
+use Illuminate\Http\Request;
+use jeremybrammer\laravelimagetos3package\laravelimagetos3package;
+use jeremybrammer\laravelimagetos3package\Models\ImageUpload;
+use jeremybrammer\laravelimagetos3package\Facades\LaravelImageToS3PackageFacade;
+
+//Gets all previously uploaded images and pre-signs the CloudFront URLs for the thumbnails.
+LaravelImageToS3PackageFacade::getAllUploadedImages(); 
+
+//Optionally override the image size settings in the upload service.
+LaravelImageToS3PackageFacade::setWidthByImageType("thumbnail", 100);
+LaravelImageToS3PackageFacade::setWidthByImageType("small", 200);
+
+//Call the upload handler with the request, html image field name attribute, and folder in s3 to store them.
+LaravelImageToS3PackageFacade::handUploadRequest($request, "image-upload-field", "victorycto/images");
+
+//A controller example to view individual images that uses my eloquent model with route-model-binding:
+public function view(ImageUpload $imageUpload, $imagetype){
+    //Use route-model binding for the image object, and an image type to get the proper size.
+    switch($imagetype){
+        case "thumbnail": $url = $imageUpload->thumbnail_image_url; break;
+        case "small": $url = $imageUpload->small_image_url; break;
+        case "original": $url = $imageUpload->original_image_url; break;
+        default: return; break;
+    }
+    // $imageURL = $this->imagetos3->preSignS3Url($imageUpload->original_image_url); //Sign s3 URL.
+    $imageURL = LaravelImageToS3PackageFacade::preSignCloudFrontUrl($url); //Sign CloudFront URL.
+    return view("imageuploads.view", ["imageURL" => $imageURL]);
+}
+
+Enjoy!  Below are original instructions for this project.
+
 # Victory Laravel Sandbox Application
 
 This application is designed for testing of Laravel Framework capabilities.  Please submit your changes as a Pull Request.
