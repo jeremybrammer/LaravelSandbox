@@ -19,22 +19,22 @@
 # Installation Steps for this repository:
 
 Install the composer project:
-```
+``` bash
 composer install
 ```
 
 If installing in another project, require my package, but this is already in composer.json for this repo, so skip this if installing from here.
-```
+``` bash
 composer require jeremybrammer/laravelimagetos3package
 ```
 
 Publish the package's config files. It publishes a config file for a dependency.
-```
+``` bash
 php artisan vendor:publish --provider="jeremybrammer\laravelimagetos3package\laravelimagetos3packageServiceProvider"
 ```
 
 Migrate the database to get the new image uploads database table going.
-```
+``` bash
 php artisan migrate
 ```
 
@@ -56,7 +56,7 @@ Depending on your server configuration, increase nginx.conf and php.ini settings
 # Package Usage in Controllers:
 
 Include Laravel's Request class, and the following classes, models, and facades from my package.
-```
+``` php
 use Illuminate\Http\Request;
 use jeremybrammer\laravelimagetos3package\laravelimagetos3package;
 use jeremybrammer\laravelimagetos3package\Models\ImageUpload;
@@ -64,23 +64,23 @@ use jeremybrammer\laravelimagetos3package\Facades\LaravelImageToS3PackageFacade;
 ```
 
 Gets all previously uploaded images and pre-signs the CloudFront URLs for the thumbnails.
-```
+``` php
 LaravelImageToS3PackageFacade::getAllUploadedImages(); 
 ```
 
 Optionally override the image size settings in the upload service.
-```
+``` php
 LaravelImageToS3PackageFacade::setWidthByImageType("thumbnail", 100);
 LaravelImageToS3PackageFacade::setWidthByImageType("small", 200);
 ```
 
 Call the upload handler with the request, html image field name attribute, and folder in s3 to store them.
-```
+``` php
 LaravelImageToS3PackageFacade::handUploadRequest($request, "image-upload-field", "victorycto/images");
 ```
 
 A controller example to view individual images that uses my eloquent model with route-model-binding:
-```
+``` php
 public function view(ImageUpload $imageUpload, $imagetype){
     //Use route-model binding for the image object, and an image type to get the proper size.
     switch($imagetype){
