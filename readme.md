@@ -19,22 +19,22 @@
 # Installation Steps for this repository:
 
 Install the composer project:
-``` bash
+```console
 composer install
 ```
 
 If installing in another project, require my package, but this is already in composer.json for this repo, so skip this if installing from here.
-``` bash
+```console
 composer require jeremybrammer/laravelimagetos3package
 ```
 
 Publish the package's config files. It publishes a config file for a dependency.
-``` bash
+```console
 php artisan vendor:publish --provider="jeremybrammer\laravelimagetos3package\laravelimagetos3packageServiceProvider"
 ```
 
 Migrate the database to get the new image uploads database table going.
-``` bash
+```console
 php artisan migrate
 ```
 
