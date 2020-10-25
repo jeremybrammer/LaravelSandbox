@@ -18,19 +18,24 @@
 
 # Installation Steps for this repository:
 
-//Install the composer project:
+Install the composer project:
+```
 composer install
 
-//If installing in another project, require my package, but this is already in composer.json for this repo, so skip this if installing from here.
+If installing in another project, require my package, but this is already in composer.json for this repo, so skip this if installing from here.
+```
 composer require jeremybrammer/laravelimagetos3package
 
-//Publish the package's config files. It publishes a config file for a dependency.
+Publish the package's config files. It publishes a config file for a dependency.
+```
 php artisan vendor:publish --provider="jeremybrammer\laravelimagetos3package\laravelimagetos3packageServiceProvider"
 
-//Migrate the database to get the new image uploads database table going.
+Migrate the database to get the new image uploads database table going.
+```
 php artisan migrate
 
-//Change/Add the following lines in the .env file:
+Change/Add the following lines in the .env file:
+```
 AWS_ACCESS_KEY_ID=
 AWS_SECRET_ACCESS_KEY=
 AWS_DEFAULT_REGION=
@@ -45,23 +50,28 @@ Depending on your server configuration, increase nginx.conf and php.ini settings
 
 # Package Usage in Controllers:
 
-//Include Laravel's Request class, and the following classes, models, and facades from my package.
+Include Laravel's Request class, and the following classes, models, and facades from my package.
+```
 use Illuminate\Http\Request;
 use jeremybrammer\laravelimagetos3package\laravelimagetos3package;
 use jeremybrammer\laravelimagetos3package\Models\ImageUpload;
 use jeremybrammer\laravelimagetos3package\Facades\LaravelImageToS3PackageFacade;
 
-//Gets all previously uploaded images and pre-signs the CloudFront URLs for the thumbnails.
+Gets all previously uploaded images and pre-signs the CloudFront URLs for the thumbnails.
+```
 LaravelImageToS3PackageFacade::getAllUploadedImages(); 
 
-//Optionally override the image size settings in the upload service.
+Optionally override the image size settings in the upload service.
+```
 LaravelImageToS3PackageFacade::setWidthByImageType("thumbnail", 100);
 LaravelImageToS3PackageFacade::setWidthByImageType("small", 200);
 
-//Call the upload handler with the request, html image field name attribute, and folder in s3 to store them.
+Call the upload handler with the request, html image field name attribute, and folder in s3 to store them.
+```
 LaravelImageToS3PackageFacade::handUploadRequest($request, "image-upload-field", "victorycto/images");
 
-//A controller example to view individual images that uses my eloquent model with route-model-binding:
+A controller example to view individual images that uses my eloquent model with route-model-binding:
+```
 public function view(ImageUpload $imageUpload, $imagetype){
     //Use route-model binding for the image object, and an image type to get the proper size.
     switch($imagetype){
