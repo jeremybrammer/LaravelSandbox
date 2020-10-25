@@ -4,13 +4,10 @@
     <div class="card" style="width: 50rem;">
         <div class="card-body">
             <h5 class="card-title">Upload an Image</h5>
-            <p class="card-text">Upload an image to s3. {{ $testData }}</p>
-
-            {{-- <img src="{{ Storage::url('images/aD4cMvZoc7rlW39CbSALKCop0bmitcjuSO5M8YIk.png') }}" /> --}}
-
+            <p class="card-text">Upload an image to s3.</p>
             <form id="image-upload" class="image-upload-form" action="{{ route("imageuploads.store") }}" method="post" enctype="multipart/form-data">
                 @csrf
-                <input type="file" id="image-upload-field" name="image-upload-field" accept="image/*"/>
+                <input type="file" id="image1" name="image-upload-field" accept="image/*"/>
                 <button type="submit" class="btn btn-success">Upload</button>
             </form>
 
@@ -38,8 +35,13 @@
     @foreach($allUploadedImages as $image)
         <div class="card" style="width: 50rem;">
             <div class="card-body">
-                {{-- <p><a href="{{ $image->original_image_url_presigned }}">{{ $image->original_filename }}</a></p> --}}
-                <p><a href="{{ route("imageuploads.view", [$image->id]) }}">{{ $image->original_filename }}</a></p>
+                <h5 class="card-title">{{ $image->original_filename }}</h5>
+                <p><img src="{{ $image->thumbnail_image_url_presigned }}" /></p>
+                <ul>
+                    <li><a href="{{ route("imageuploads.view", [$image->id, "thumbnail"]) }}">Thumbnail</a></li>
+                    <li><a href="{{ route("imageuploads.view", [$image->id, "small"]) }}">Small</a></li>
+                    <li><a href="{{ route("imageuploads.view", [$image->id, "original"]) }}">Original</a></li>
+                </ul>
             </div>
         </div>
     @endforeach

@@ -12,10 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route("imageuploads.index");
 });
 
 //Route to the ImageUploads controller methods.
-Route::get('imageuploads', 'ImageUploads@index')->name('imageuploads.index');
-Route::post('imageuploads/create', 'ImageUploads@store')->name('imageuploads.store');
-Route::get("imageuploads/{imageUpload}/view", "ImageUploads@view")->name("imageuploads.view");
+Route::get("imageuploads", "ImageUploads@index")->name("imageuploads.index");
+Route::post("imageuploads/create", "ImageUploads@store")->name("imageuploads.store");
+Route::get("imageuploads/{imageUpload}/view/{imagetype}", "ImageUploads@view")->name("imageuploads.view");
